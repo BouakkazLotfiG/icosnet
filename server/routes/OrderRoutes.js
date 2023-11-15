@@ -23,4 +23,7 @@ router.put('/update/:id', updateOrder);
 // Route to delete an order
 router.delete('/delete/:id', deleteOrder);
 
+// Route to search orders by title
+router.get('/search/:title', searchOrdersByTitle);
+
 module.exports = router;

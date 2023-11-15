@@ -1,7 +1,6 @@
-const Order = require('../models/OrderModel');
+const Order = require('../models/Order');
 
 exports.createOrder = async (req, res) => {
-  console.log(req.body);
   const { title, description, price, user } = req.body;
 
   // Validate input
@@ -80,6 +79,17 @@ exports.deleteOrder = async (req, res) => {
 
     await order.remove();
     res.json({ msg: 'Order deleted' });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+exports.searchOrdersByTitle = async (req, res) => {
+  try {
+    const orders = await Order.find({
+      title: { $regex: req.params.title, $options: 'i' },
+    });
+    res.json(orders);
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

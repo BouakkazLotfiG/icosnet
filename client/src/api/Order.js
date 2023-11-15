@@ -29,3 +29,7 @@ export const deleteOrder = async (id) => {
   const response = await axios.delete(`${API_URL}/api/orders/delete/${id}`);
   return response.data;
 };
+export const searchOrdersByTitle = async (title) => {
+  const response = await axios.get(`${API_URL}api/orders/search/${title}`);
+  return response.data;
+};
