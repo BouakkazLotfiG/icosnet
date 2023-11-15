@@ -20,8 +20,6 @@ exports.register = async (req, res) => {
   }
 };
 
-const jwt = require('jsonwebtoken');
-
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -36,8 +34,7 @@ exports.login = async (req, res) => {
       return res.status(400).send('Invalid credentials');
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    res.status(200).json({ token });
+    res.status(200).json({ message: 'User logged in successfully' });
   } catch (err) {
     res.status(500).send(err.message);
   }
