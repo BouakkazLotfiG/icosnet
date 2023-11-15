@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 require('dotenv').config();
 
 // routes
+const authRoutes = require('./routes/authRoutes');
 
 // app init
 const app = express();
@@ -14,10 +15,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Use Routes
+app.use('/api/auth', authRoutes);
 
 // Connect to MongoDB
 connectDB();
-
 const port = process.env.PORT || 5000;
 
 // Start the server
