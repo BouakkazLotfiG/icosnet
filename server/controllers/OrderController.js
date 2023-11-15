@@ -1,6 +1,7 @@
 const Order = require('../models/OrderModel');
 
 exports.createOrder = async (req, res) => {
+  console.log(req.body);
   const { title, description, price, user } = req.body;
 
   // Validate input

@@ -6,11 +6,10 @@ const {
   getOrderById,
   updateOrder,
   deleteOrder,
-  searchOrdersByTitle,
 } = require('../controllers/OrderController');
 
 // Route to create a new order
-router.post('/', createOrder);
+router.post('/create', createOrder);
 
 // Route to get all orders
 router.get('/', getAllOrders);
@@ -19,9 +18,9 @@ router.get('/', getAllOrders);
 router.get('/:id', getOrderById);
 
 // Route to update an order
-router.put('/:id', updateOrder);
+router.put('/update/:id', updateOrder);
 
 // Route to delete an order
-router.delete('/:id', deleteOrder);
+router.delete('/delete/:id', deleteOrder);
 
 module.exports = router;

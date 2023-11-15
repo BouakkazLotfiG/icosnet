@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { login } from '../api/Auth';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/slices/userSlice';
 
 const useLogin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,8 +26,10 @@ const useLogin = () => {
     try {
       const response = await login(formData.email, formData.password);
       setLoading(false);
+      console.log(response);
+      dispatch(setUser(response));
       navigate('/');
-      return response.data;
+      return response;
     } catch (err) {
       setLoading(false);
       setError(err.response ? err.response.data : 'Error logging in');

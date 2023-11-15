@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
     });
     await user.save();
 
-    res.status(201).send({ message: 'User created successfully' });
+    res.status(201).send({ user });
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
       return res.status(400).send('Invalid credentials');
     }
 
-    res.status(200).json({ message: 'User logged in successfully' });
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).send(err.message);
   }
